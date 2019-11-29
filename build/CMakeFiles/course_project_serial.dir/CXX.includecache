@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/thomaskahle/course-project-thomaskAHLE/source/course-project-serial.cpp
+iostream
+-
+iomanip
+-
+cmath
+-
+utility
+-
+list
+-
+vector
+-
+fstream
+-
+exception
+-
+algorithm
+-
+

@@ -1,0 +1,3 @@
+/home/thomaskahle/course-project-thomaskAHLE/build/CMakeFiles/rebuild_cache.dir
+/home/thomaskahle/course-project-thomaskAHLE/build/CMakeFiles/course_project_serial.dir
+/home/thomaskahle/course-project-thomaskAHLE/build/CMakeFiles/edit_cache.dir
