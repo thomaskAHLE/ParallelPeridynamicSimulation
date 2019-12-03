@@ -1,2 +1,5 @@
-project(CourseProject)
+cmake_minimum_required (VERSION 3.3.2)
+project(CourseProject CXX)
 add_executable(course_project_serial "./source/course-project-serial.cpp")
+find_package(HPX REQUIRED)
+add_hpx_executable(course_project_parallel SOURCES source/course-project-parallel.cpp)

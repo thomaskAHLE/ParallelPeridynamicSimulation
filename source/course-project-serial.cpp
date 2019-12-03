@@ -481,7 +481,7 @@ std::ostream & operator << (std::ostream & out, peridynamic_solver & pd) noexcep
 
 int main()
 {
-    peridynamic_solver pd {"../config.dat", "output.dat"};
+    peridynamic_solver pd {"../input_files/config.dat", "../output_files/output_serial.dat"};
     pd.DoWork();
     return EXIT_SUCCESS;
 }

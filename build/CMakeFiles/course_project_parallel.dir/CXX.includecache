@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/thomaskahle/course-project-thomaskAHLE/source/course-project-parallel.cpp
+hpx/hpx_main.hpp
+-
+hpx/hpx.hpp
+-
+hpx/include/parallel_algorithm.hpp
+-
+iostream
+-
+iomanip
+-
+cmath
+-
+utility
+-
+list
+-
+vector
+-
+fstream
+-
+exception
+-
+algorithm
+-
+

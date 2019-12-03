@@ -14,6 +14,27 @@
 # EXTERNAL cache entries
 ########################
 
+//Path to a file.
+Boost_INCLUDE_DIR:PATH=/usr/include
+
+//Boost library directory DEBUG
+Boost_LIBRARY_DIR_DEBUG:PATH=/usr/lib64
+
+//Boost library directory RELEASE
+Boost_LIBRARY_DIR_RELEASE:PATH=/usr/lib64
+
+//Boost program_options library (debug)
+Boost_PROGRAM_OPTIONS_LIBRARY_DEBUG:FILEPATH=/usr/lib64/libboost_program_options.so
+
+//Boost program_options library (release)
+Boost_PROGRAM_OPTIONS_LIBRARY_RELEASE:FILEPATH=/usr/lib64/libboost_program_options.so
+
+//Boost system library (debug)
+Boost_SYSTEM_LIBRARY_DEBUG:FILEPATH=/usr/lib64/libboost_system.so
+
+//Boost system library (release)
+Boost_SYSTEM_LIBRARY_RELEASE:FILEPATH=/usr/lib64/libboost_system.so
+
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
@@ -94,8 +115,56 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 //Enable/Disable output of compile commands during generation.
 CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=OFF
 
+//User executables (bin)
+CMAKE_INSTALL_BINDIR:PATH=bin
+
+//Read-only architecture-independent data (DATAROOTDIR)
+CMAKE_INSTALL_DATADIR:PATH=
+
+//Read-only architecture-independent data root (share)
+CMAKE_INSTALL_DATAROOTDIR:PATH=share
+
+//Documentation root (DATAROOTDIR/doc/PROJECT_NAME)
+CMAKE_INSTALL_DOCDIR:PATH=
+
+//C header files (include)
+CMAKE_INSTALL_INCLUDEDIR:PATH=include
+
+//Info documentation (DATAROOTDIR/info)
+CMAKE_INSTALL_INFODIR:PATH=
+
+//Object code libraries (lib64)
+CMAKE_INSTALL_LIBDIR:PATH=lib64
+
+//Program executables (libexec)
+CMAKE_INSTALL_LIBEXECDIR:PATH=libexec
+
+//Locale-dependent data (DATAROOTDIR/locale)
+CMAKE_INSTALL_LOCALEDIR:PATH=
+
+//Modifiable single-machine data (var)
+CMAKE_INSTALL_LOCALSTATEDIR:PATH=var
+
+//Man documentation (DATAROOTDIR/man)
+CMAKE_INSTALL_MANDIR:PATH=
+
+//C header files for non-gcc (/usr/include)
+CMAKE_INSTALL_OLDINCLUDEDIR:PATH=/usr/include
+
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
+
+//Run-time variable data (LOCALSTATEDIR/run)
+CMAKE_INSTALL_RUNSTATEDIR:PATH=
+
+//System admin executables (sbin)
+CMAKE_INSTALL_SBINDIR:PATH=sbin
+
+//Modifiable architecture-independent data (com)
+CMAKE_INSTALL_SHAREDSTATEDIR:PATH=com
+
+//Read-only single-machine data (etc)
+CMAKE_INSTALL_SYSCONFDIR:PATH=etc
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=/usr/bin/ld
@@ -206,17 +275,72 @@ CourseProject_BINARY_DIR:STATIC=/home/thomaskahle/course-project-thomaskAHLE/bui
 //Value Computed by CMake
 CourseProject_SOURCE_DIR:STATIC=/home/thomaskahle/course-project-thomaskAHLE
 
-//Value Computed by CMake
-Course_BINARY_DIR:STATIC=/home/thomaskahle/course-project-thomaskAHLE/build
+//CXX compiler for HPX
+HPX_CXX_COMPILER:STRING=/usr/bin/c++
 
-//Value Computed by CMake
-Course_SOURCE_DIR:STATIC=/home/thomaskahle/course-project-thomaskAHLE
+//CXX compiler id for HPX
+HPX_CXX_COMPILER_ID:STRING=GNU
+
+//CXX compiler version for HPX
+HPX_CXX_COMPILER_VERSION:STRING=9.2.1
+
+//C compiler for HPX
+HPX_C_COMPILER:STRING=/usr/bin/cc
+
+//C compiler id for HPX
+HPX_C_COMPILER_ID:STRING=GNU
+
+//C compiler version for HPX
+HPX_C_COMPILER_VERSION:STRING=9.2.1
+
+//The directory containing a CMake configuration file for HPX.
+HPX_DIR:PATH=/usr/local/lib64/cmake/HPX
+
+//Fortran compiler for HPX
+HPX_Fortran_COMPILER:STRING=
+
+//Fortran compiler id for HPX
+HPX_Fortran_COMPILER_ID:STRING=
+
+//Fortran compiler version for HPX
+HPX_Fortran_COMPILER_VERSION:STRING=
+
+//Revision of HPX from Git
+HPX_GIT_COMMIT:STRING=8e9d9b8e40dc4721795cc017978e6786a166eeeb
+
+//Path to a file.
+HWLOC_INCLUDE_DIR:PATH=/usr/include
+
+//Path to a library.
+HWLOC_LIBRARY:FILEPATH=/usr/lib64/libhwloc.so
+
+//pkg-config executable
+PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
+
+//Path to a library.
+pkgcfg_lib_PC_HWLOC_hwloc:FILEPATH=/usr/lib64/libhwloc.so
 
 
 ########################
 # INTERNAL cache entries
 ########################
 
+//ADVANCED property for variable: Boost_INCLUDE_DIR
+Boost_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_LIBRARY_DIR_DEBUG
+Boost_LIBRARY_DIR_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_LIBRARY_DIR_RELEASE
+Boost_LIBRARY_DIR_RELEASE-ADVANCED:INTERNAL=1
+//1.61
+Boost_MINIMUM_VERSION:INTERNAL=1.61
+//ADVANCED property for variable: Boost_PROGRAM_OPTIONS_LIBRARY_DEBUG
+Boost_PROGRAM_OPTIONS_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_PROGRAM_OPTIONS_LIBRARY_RELEASE
+Boost_PROGRAM_OPTIONS_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_SYSTEM_LIBRARY_DEBUG
+Boost_SYSTEM_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: Boost_SYSTEM_LIBRARY_RELEASE
+Boost_SYSTEM_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
 CMAKE_AR-ADVANCED:INTERNAL=1
 //This is the directory where this CMakeCache.txt was created
@@ -293,11 +417,51 @@ CMAKE_GENERATOR_INSTANCE:INTERNAL=
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
+//Have symbol pthread_create
+CMAKE_HAVE_LIBC_CREATE:INTERNAL=
+//Have library pthreads
+CMAKE_HAVE_PTHREADS_CREATE:INTERNAL=
+//Have library pthread
+CMAKE_HAVE_PTHREAD_CREATE:INTERNAL=1
+//Have include pthread.h
+CMAKE_HAVE_PTHREAD_H:INTERNAL=1
 //Source directory with the top level CMakeLists.txt file for this
 // project
 CMAKE_HOME_DIRECTORY:INTERNAL=/home/thomaskahle/course-project-thomaskAHLE
+//ADVANCED property for variable: CMAKE_INSTALL_BINDIR
+CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DATADIR
+CMAKE_INSTALL_DATADIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DATAROOTDIR
+CMAKE_INSTALL_DATAROOTDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_DOCDIR
+CMAKE_INSTALL_DOCDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_INCLUDEDIR
+CMAKE_INSTALL_INCLUDEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_INFODIR
+CMAKE_INSTALL_INFODIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LIBDIR
+CMAKE_INSTALL_LIBDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LIBEXECDIR
+CMAKE_INSTALL_LIBEXECDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LOCALEDIR
+CMAKE_INSTALL_LOCALEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_LOCALSTATEDIR
+CMAKE_INSTALL_LOCALSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_MANDIR
+CMAKE_INSTALL_MANDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_OLDINCLUDEDIR
+CMAKE_INSTALL_OLDINCLUDEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_RUNSTATEDIR
+CMAKE_INSTALL_RUNSTATEDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SBINDIR
+CMAKE_INSTALL_SBINDIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_INSTALL_SHAREDSTATEDIR
+CMAKE_INSTALL_SHAREDSTATEDIR-ADVANCED:INTERNAL=1
 //Install .so files without execute permission.
 CMAKE_INSTALL_SO_NO_EXE:INTERNAL=0
+//ADVANCED property for variable: CMAKE_INSTALL_SYSCONFDIR
+CMAKE_INSTALL_SYSCONFDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_LINKER
 CMAKE_LINKER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MAKE_PROGRAM
@@ -356,4 +520,71 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+//Details about finding Hwloc
+FIND_PACKAGE_MESSAGE_DETAILS_Hwloc:INTERNAL=[/usr/lib64/libhwloc.so][/usr/include][v()]
+//ADVANCED property for variable: HWLOC_INCLUDE_DIR
+HWLOC_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: HWLOC_LIBRARY
+HWLOC_LIBRARY-ADVANCED:INTERNAL=1
+PC_HWLOC_CFLAGS:INTERNAL=
+PC_HWLOC_CFLAGS_I:INTERNAL=
+PC_HWLOC_CFLAGS_OTHER:INTERNAL=
+PC_HWLOC_FOUND:INTERNAL=1
+PC_HWLOC_INCLUDEDIR:INTERNAL=/usr/include
+PC_HWLOC_INCLUDE_DIRS:INTERNAL=
+PC_HWLOC_LDFLAGS:INTERNAL=-lhwloc
+PC_HWLOC_LDFLAGS_OTHER:INTERNAL=
+PC_HWLOC_LIBDIR:INTERNAL=/usr/lib64
+PC_HWLOC_LIBRARIES:INTERNAL=hwloc
+PC_HWLOC_LIBRARY_DIRS:INTERNAL=
+PC_HWLOC_LIBS:INTERNAL=
+PC_HWLOC_LIBS_L:INTERNAL=
+PC_HWLOC_LIBS_OTHER:INTERNAL=
+PC_HWLOC_LIBS_PATHS:INTERNAL=
+PC_HWLOC_PREFIX:INTERNAL=/usr
+PC_HWLOC_STATIC_CFLAGS:INTERNAL=
+PC_HWLOC_STATIC_CFLAGS_I:INTERNAL=
+PC_HWLOC_STATIC_CFLAGS_OTHER:INTERNAL=
+PC_HWLOC_STATIC_INCLUDE_DIRS:INTERNAL=
+PC_HWLOC_STATIC_LDFLAGS:INTERNAL=-lhwloc;-lm;-lltdl;-lpthread;-ldl
+PC_HWLOC_STATIC_LDFLAGS_OTHER:INTERNAL=
+PC_HWLOC_STATIC_LIBDIR:INTERNAL=
+PC_HWLOC_STATIC_LIBRARIES:INTERNAL=hwloc;m;ltdl;pthread;dl
+PC_HWLOC_STATIC_LIBRARY_DIRS:INTERNAL=
+PC_HWLOC_STATIC_LIBS:INTERNAL=
+PC_HWLOC_STATIC_LIBS_L:INTERNAL=
+PC_HWLOC_STATIC_LIBS_OTHER:INTERNAL=
+PC_HWLOC_STATIC_LIBS_PATHS:INTERNAL=
+PC_HWLOC_VERSION:INTERNAL=2.0.4
+PC_HWLOC_hwloc_INCLUDEDIR:INTERNAL=
+PC_HWLOC_hwloc_LIBDIR:INTERNAL=
+PC_HWLOC_hwloc_PREFIX:INTERNAL=
+PC_HWLOC_hwloc_VERSION:INTERNAL=
+//ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
+PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
+//Last used BOOST_ROOT value.
+_BOOST_ROOT_LAST:INTERNAL=/usr
+//Last used Boost_ADDITIONAL_VERSIONS value.
+_Boost_ADDITIONAL_VERSIONS_LAST:INTERNAL=1.71.0;1.71;1.70.0;1.70;1.69.0;1.69;1.68.0;1.68;1.67.0;1.67;1.66.0;1.66;1.65.0;1.65;1.65.1;1.65.1;1.64.0;1.64;1.63.0;1.63;1.62.0;1.62;1.61.0;1.61;1.60.0;1.60;1.59.0;1.59;1.58.0;1.58;1.57.0;1.57
+//Components requested for this build tree.
+_Boost_COMPONENTS_SEARCHED:INTERNAL=program_options;system
+//Last used Boost_INCLUDE_DIR value.
+_Boost_INCLUDE_DIR_LAST:INTERNAL=/usr/include
+//Last used Boost_LIBRARY_DIR_DEBUG value.
+_Boost_LIBRARY_DIR_DEBUG_LAST:INTERNAL=/usr/lib64
+//Last used Boost_LIBRARY_DIR_RELEASE value.
+_Boost_LIBRARY_DIR_RELEASE_LAST:INTERNAL=/usr/lib64
+//Last used Boost_NAMESPACE value.
+_Boost_NAMESPACE_LAST:INTERNAL=boost
+//Last used Boost_USE_MULTITHREADED value.
+_Boost_USE_MULTITHREADED_LAST:INTERNAL=TRUE
+//CMAKE_INSTALL_PREFIX during last run
+_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
+__pkg_config_arguments_PC_HWLOC:INTERNAL=QUIET;hwloc
+__pkg_config_checked_PC_HWLOC:INTERNAL=1
+//Sources for libcourse_project_parallel_executable.
+course_project_parallel_executable_SOURCES:INTERNAL=/home/thomaskahle/course-project-thomaskAHLE/source/course-project-parallel.cpp
+//ADVANCED property for variable: pkgcfg_lib_PC_HWLOC_hwloc
+pkgcfg_lib_PC_HWLOC_hwloc-ADVANCED:INTERNAL=1
+prefix_result:INTERNAL=/usr/lib64
 
