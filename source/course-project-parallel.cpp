@@ -1,7 +1,7 @@
 #include <hpx/hpx_main.hpp>
 #include <hpx/hpx.hpp>
 #include <hpx/include/parallel_algorithm.hpp>
-
+#include <hpx/functional.hpp>
 
 #include <iostream>
 #include <iomanip>
@@ -179,8 +179,8 @@ std::istream & operator >> (std::istream & in, vec_3 & v) noexcept
 class peridynamic_solver
 {
 public:
-	peridynamic_solver(double lengthX, double lengthY, double lengthZ, double meshSize, std::string in_file, std::string out_file ) :
-		lx(lengthX), ly(lengthY), lz(lengthZ), h(meshSize),
+	peridynamic_solver(double lengthX, double lengthY, double lengthZ, double meshSize, size_t grain_size,  std::string in_file, std::string out_file ) :
+		lx(lengthX), ly(lengthY), lz(lengthZ), h(meshSize), grain_size(grain_size),
 		mx(std::floor(lengthX / meshSize)), my(std::floor(lengthY / meshSize)), mz(std::floor(lengthZ / meshSize)),
 		in_file_name(in_file), out_file_name(out_file)
 	{
@@ -188,7 +188,7 @@ public:
 	}
 	
 	//just for testing
-	peridynamic_solver(std::string infile_name, std::string outfile_name): in_file_name(infile_name), out_file_name(outfile_name)
+	peridynamic_solver(size_t grain_size,std::string infile_name, std::string outfile_name):grain_size(grain_size), in_file_name(infile_name), out_file_name(outfile_name)
 	{
 		
 		lx = 10.0;
@@ -238,6 +238,7 @@ private:
 	double h;
 	double c, sc;
 	size_t curr_ts;
+	size_t grain_size;
 	std::vector<double> mass_density;
 	std::vector<vec_3> forces;
 	std::vector <double> volumes;
@@ -288,28 +289,64 @@ private:
 			forces[i] += external_forces[i];
 		});
 	}
+	
 	void compute_acceleration()
 	{
-		for (size_t i = 0; i < num_nodes; ++i)
+		
+		auto op = [&](size_t start, size_t end)
 		{
-			accelerations[i] = forces[i] / mass_density[i];
+			for(size_t i = start; i < end; ++i)
+			{
+				accelerations[i] = forces[i] / mass_density[i];
+			}
+		};
+		std::vector<hpx::lcos::future<void>> futures(grain_size);
+		size_t partition_size = num_nodes/grain_size;
+		for (size_t i = 0; i < grain_size; ++i)
+		{
+			futures.emplace_back(hpx::async(op, i * partition_size, (i+1) * partition_size));
+
 		}
+		hpx::wait_all(futures);
 	}
 	void compute_displacements()
 	{
-		for (size_t i = 0; i < num_nodes; ++i)
+		auto op = [&](size_t start, size_t end)
 		{
+			for(size_t i = start; i < end; ++i)
+			{
+			
 			displacements_next[i] = 2 * displacements_curr[i] - displacements_prev[i] + time_step * time_step * (forces[i]);
+			}
+		};
+		std::vector<hpx::lcos::future<void>> futures(grain_size);
+		size_t partition_size = num_nodes/grain_size;
+		for (size_t i = 0; i < grain_size; ++i)
+		{
+			futures.emplace_back(hpx::async(op, i * partition_size, (i+1) * partition_size));
+
 		}
+		hpx::wait_all(futures);
 	}
 	void update_positions()
 	{
 		std::swap(displacements_curr, displacements_prev);
 		std::swap(displacements_next, displacements_curr);
-		for (size_t i = 0; i < num_nodes; ++i)
+		auto op = [&](size_t start, size_t end)
 		{
-			positions[i] += displacements_curr[i];
+			for(size_t i = start; i < end; ++i)
+			{
+				positions[i] += displacements_curr[i];
+			}
+		};
+		std::vector<hpx::lcos::future<void>> futures(grain_size);
+		size_t partition_size = num_nodes/grain_size;
+		for (size_t i = 0; i < grain_size; ++i)
+		{
+			futures.emplace_back(hpx::async(op, i * partition_size, (i+1) * partition_size));
+
 		}
+		hpx::wait_all(futures);
 	}
 	void read_file()
 	{
@@ -358,7 +395,13 @@ private:
 		
 	
 	}
-
+	void DoOpInLoop(size_t begin, size_t end, void(*indexfunc)(size_t) )
+	{
+		for(size_t i = begin; i < end; ++i)
+		{
+			indexfunc(i);
+		}
+	}
 	void generate_mesh()
 	{
 		positions.reserve(num_nodes);
@@ -476,6 +519,7 @@ private:
 			std::cout << v[i] << " ";
 		}
 	}
+	
 };
 
 std::ostream & operator << (std::ostream & out, peridynamic_solver & pd) noexcept
@@ -492,7 +536,7 @@ std::ostream & operator << (std::ostream & out, peridynamic_solver & pd) noexcep
 
 int main()
 {
-    peridynamic_solver pd {"../input_files/config.dat", "../output_files/output_paralllel.dat"};
+    peridynamic_solver pd {100, "../input_files/config.dat", "../output_files/output_paralllel.dat"};
     pd.DoWork();
     return EXIT_SUCCESS;
 }

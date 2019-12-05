@@ -13,6 +13,8 @@ hpx/hpx.hpp
 -
 hpx/include/parallel_algorithm.hpp
 -
+hpx/functional.hpp
+-
 iostream
 -
 iomanip
