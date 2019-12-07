@@ -300,12 +300,18 @@ private:
 				accelerations[i] = forces[i] / mass_density[i];
 			}
 		};
-		std::vector<hpx::lcos::future<void>> futures(grain_size);
-		size_t partition_size = num_nodes/grain_size;
-		for (size_t i = 0; i < grain_size; ++i)
+		size_t num_partitions = num_nodes/grain_size;
+		std::vector<hpx::lcos::future<void>> futures(num_partitions);
+		for (size_t i = 0; i < num_partitions; ++i)
 		{
-			futures.emplace_back(hpx::async(op, i * partition_size, (i+1) * partition_size));
-
+			if( (i + 1) < num_partitions)
+			{
+				futures.emplace_back(hpx::async(op, i * grain_size, (i+1) * grain_size));
+			}
+			else
+			{
+				futures.emplace_back(hpx::async(op, i * grain_size, num_nodes ));
+			}
 		}
 		hpx::wait_all(futures);
 	}
@@ -319,12 +325,18 @@ private:
 			displacements_next[i] = 2 * displacements_curr[i] - displacements_prev[i] + time_step * time_step * (forces[i]);
 			}
 		};
-		std::vector<hpx::lcos::future<void>> futures(grain_size);
-		size_t partition_size = num_nodes/grain_size;
-		for (size_t i = 0; i < grain_size; ++i)
+		size_t num_partitions = num_nodes/grain_size;
+		std::vector<hpx::lcos::future<void>> futures(num_partitions);
+		for (size_t i = 0; i < num_partitions; ++i)
 		{
-			futures.emplace_back(hpx::async(op, i * partition_size, (i+1) * partition_size));
-
+			if( (i + 1) < num_partitions)
+			{
+				futures.emplace_back(hpx::async(op, i * grain_size, (i+1) * grain_size));
+			}
+			else
+			{
+				futures.emplace_back(hpx::async(op, i * grain_size, num_nodes ));
+			}
 		}
 		hpx::wait_all(futures);
 	}
@@ -339,12 +351,18 @@ private:
 				positions[i] += displacements_curr[i];
 			}
 		};
-		std::vector<hpx::lcos::future<void>> futures(grain_size);
-		size_t partition_size = num_nodes/grain_size;
-		for (size_t i = 0; i < grain_size; ++i)
+		size_t num_partitions = num_nodes/grain_size;
+		std::vector<hpx::lcos::future<void>> futures(num_partitions);
+		for (size_t i = 0; i < num_partitions; ++i)
 		{
-			futures.emplace_back(hpx::async(op, i * partition_size, (i+1) * partition_size));
-
+			if( (i + 1) < num_partitions)
+			{
+				futures.emplace_back(hpx::async(op, i * grain_size, (i+1) * grain_size));
+			}
+			else
+			{
+				futures.emplace_back(hpx::async(op, i * grain_size, num_nodes ));
+			}
 		}
 		hpx::wait_all(futures);
 	}
